@@ -1,0 +1,17 @@
+{
+  "name": "valami",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . posttop --platform=win32 --arch=x64 --overwrite --prune=true --asar --out=dist "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^35.0.2",
+    "electron-packager": "^17.1.2"
+  }
+}
