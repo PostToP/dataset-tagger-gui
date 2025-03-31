@@ -92,6 +92,8 @@ async function showNext() {
     document.getElementById('current-image').src = `https://img.youtube.com/vi/${next.ID}/hqdefault.jpg`
     document.getElementById('current-title').innerText = next.Title;
     document.getElementById('current-artist').innerText = next["Channel Name"];
+    document.getElementById('current-description').innerText = next.Description;
+    document.getElementById('current-link').href = `https://www.youtube.com/watch?v=${next.ID}`;
     let aiResult = await ai;
     document.getElementById('current-prediction').innerText = aiResult + "%";
     if (aiResult > 50) {
@@ -135,14 +137,10 @@ async function getNextIndex() {
 
 function handleKeystroke(event) {
     if (event.key === 'ArrowRight') {
-        data[currentIndex]["Is Music"] = false;
-        setCurrentIndex();
-        showNext();
+        markVideo(false);
     }
     if (event.key === 'ArrowLeft') {
-        data[currentIndex]["Is Music"] = true;
-        setCurrentIndex();
-        showNext();
+        markVideo(true);
     }
     if (event.key === 'ArrowUp') {
         revert();
@@ -150,6 +148,12 @@ function handleKeystroke(event) {
     if (event.key === 'ArrowDown') {
         skipForNow();
     }
+}
+
+function markVideo(flag) {
+    data[currentIndex]["Is Music"] = flag;
+    setCurrentIndex();
+    showNext();
 }
 
 async function applyAutoClassificationRules() {
